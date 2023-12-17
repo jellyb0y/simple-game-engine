@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <script type="text/javascript" src="[[lib]]"></script>
+        <script type="text/javascript" src="[[script]]"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            (function () {
+                const instanceId = '[[INSTANCE_ID]]';
+
+                setInterval(() => {
+                    fetch('/instance')
+                    .then((res) => res.json())
+                    .then(({ instance }) => {
+                        if (instance !== instanceId) {
+                        window.location.reload();
+                        }
+                    })
+                    .catch(console.error);
+                }, 1000);  
+                })();
+        </script>
+    </body>
+</html>

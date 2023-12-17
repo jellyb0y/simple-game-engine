@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "allowJs": true,
+    "checkJs": false,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "paths": {
+      "@examples/*": ["./examples/*"],
+      "@bin/*": ["./bin/*"],
+      "@lib/*": ["./lib/*"]
+    },
+  },
+  "include": ["./bin/*", "./examples/*", "./lib/**/*"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
+}
