@@ -1,7 +1,7 @@
-import type { Position, Size } from '../types';
+import type { Point } from '../types';
 
 export interface Options {
-  size?: Size;
-  position?: Position;
+  position?: Point;
   zIndex?: number;
+  primaryPoint?: Point;
 }

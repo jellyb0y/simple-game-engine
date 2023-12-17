@@ -2,6 +2,7 @@ const path = require('path');
 const { globSync } = require('glob');
 
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const tsConfigPath = path.resolve(__dirname, './tsconfig.json');
 
@@ -19,6 +20,7 @@ const examplesEntries = globSync('examples/*/index.ts').reduce((acc, entry) => {
 
 module.exports = {
     resolve: {
+        extensions: ['.tsx', '.ts', '.jsx', '.js'],
         plugins: [
           new TsconfigPathsPlugin({
             configFile: tsConfigPath,
@@ -42,7 +44,27 @@ module.exports = {
         filename: '[name].js',
         path: path.resolve(__dirname, 'dist')
     },
-    resolve: {
-        extensions: ['.tsx', '.ts', '.jsx', '.js']
-    },
+    plugins: [
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: './examples/**/public/*',
+                    to: ({ absoluteFilename }) => {
+                        const [_, exampleName, file] = absoluteFilename
+                            .match(/\/examples\/([^\/]+)\/public\/(.+)$/) || [];
+
+                        console.log(absoluteFilename);
+
+                        if (!exampleName) {
+                            return absoluteFilename;
+                        }
+
+                        console.log(exampleName, file, path.resolve(__dirname, `dist/public/${exampleName}/${file}`))
+
+                        return path.resolve(__dirname, `dist/public/${exampleName}/${file}`);
+                    },
+                }
+            ],
+        })
+    ]
 };

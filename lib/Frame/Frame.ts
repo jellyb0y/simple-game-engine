@@ -75,7 +75,8 @@ export class Frame {
 
   private get entitiesRenderOrder() {
     return Array.from(this.entitiesMap.entries())
-      .sort(([_, indexA], [__, indexB]) => indexB - indexA)
+      .reverse()
+      .sort(([_, indexA], [__, indexB]) => indexA - indexB)
       .map(([entity]) => entity);
   }
 }

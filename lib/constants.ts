@@ -1,6 +1,6 @@
-import type { Position, Size } from './types';
+import type { Point, Size } from './types';
 
-export const DEFAULT_POSITION: Position = {
+export const DEFAULT_POSITION: Point = {
   x: 0,
   y: 0,
 };

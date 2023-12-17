@@ -3,7 +3,7 @@ export type Size = {
   height: number;
 };
 
-export type Position = {
+export type Point = {
   x: number;
   y: number;
 };

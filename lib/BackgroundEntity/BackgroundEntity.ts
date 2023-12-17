@@ -1,14 +1,12 @@
-import { FitMode, Position, Size } from '../types';
-import { Entity } from '../Entity';
+import { FitMode, Point, Size } from '../types';
+import { ImageEntity } from '../ImageEntity';
 
 import type { ExtendedOptions } from './types';
 
-export class BackgroundEntity extends Entity {
+export class BackgroundEntity extends ImageEntity {
   public fitMode?: FitMode;
   public alignX?: boolean;
   public alignY?: boolean;
-
-  private asset: HTMLImageElement;
 
   constructor(asset: string, options?: ExtendedOptions) {
     const {
@@ -18,26 +16,18 @@ export class BackgroundEntity extends Entity {
       ...restOptions
     } = options;
 
-    super(restOptions);
+    super(asset, restOptions);
 
     this.fitMode = fitMode;
     this.alignX = alignX;
     this.alignY = alignY;
+  }
 
-    this.asset = new Image();
-    this.asset.src = asset;
-
-    this.ready = new Promise<void>((resolve, reject) => {
-      this.asset.onerror = reject;
-      this.asset.onload = () => {
-        this.size = {
-          width: this.asset.naturalWidth,
-          height: this.asset.naturalHeight,
-        };
-
-        resolve();
-      };
-    });
+  protected loadEffect() {
+    this.size = {
+      width: this.asset.naturalWidth,
+      height: this.asset.naturalHeight,
+    };
   }
 
   public render(ctx: CanvasRenderingContext2D): void {
@@ -54,7 +44,7 @@ export class BackgroundEntity extends Entity {
     );
   }
 
-  private getRenderPosition(ctx: CanvasRenderingContext2D, renderSize: Size): Position {
+  private getRenderPosition(ctx: CanvasRenderingContext2D, renderSize: Size): Point {
     const { width, height } = renderSize;
 
     const {

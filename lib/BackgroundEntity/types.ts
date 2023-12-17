@@ -1,5 +1,5 @@
-import type { FitMode, Size } from '../types';
-import type { Options } from '../Entity/types';
+import type { FitMode } from '../types';
+import type { ExtendedOptions as Options } from '../ImageEntity/types';
 
 export type ExtendedOptions = Options & {
     fitMode?: FitMode;
