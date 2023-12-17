@@ -1,9 +1,23 @@
 <html>
     <head>
-        <script type="text/javascript" src="[[lib]]"></script>
-        <script type="text/javascript" src="[[script]]"></script>
+        <script type="text/javascript" src="[[lib]]" defer="defer"></script>
+        <script type="text/javascript" src="[[script]]" defer="defer"></script>
     </head>
     <body>
+        <style>
+            html, body {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+            }
+        
+            #app {
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+        <canvas id="app"></canvas>
         <script type="text/javascript">
             (function () {
                 const instanceId = '[[INSTANCE_ID]]';

@@ -15,8 +15,8 @@ export const examplesHandler = (req: Request, res: Response) => {
   let indexFile = readFileSync(`${__dirname}/../public/index.html`).toString();
 
   indexFile = indexFile.replace('[[INSTANCE_ID]]', INSTANCE_ID);
-  indexFile = indexFile.replace('[[lib]]', `/lib/index.js`);
-  indexFile = indexFile.replace('[[script]]', `/static/${exampleName}/index.js`);
+  indexFile = indexFile.replace('[[lib]]', `/static/lib.js`);
+  indexFile = indexFile.replace('[[script]]', `/static/example-${exampleName}.js`);
 
   res.send(indexFile);
 };

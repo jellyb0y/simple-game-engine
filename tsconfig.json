@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "commonjs",
+    "lib": ["es5", "es6", "dom"],
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -18,7 +19,7 @@
       "@lib/*": ["./lib/*"]
     },
   },
-  "include": ["./bin/*", "./examples/*", "./lib/**/*"],
+  "include": ["./bin/**/*", "./examples/**/*", "./lib/**/*", "./lib/declare.d.ts"],
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   }
